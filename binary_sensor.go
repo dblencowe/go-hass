@@ -1,6 +1,9 @@
 package hass
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type BinarySensorAttributes struct {
 	PresenceSensors []string      `json:"presence_sensors"`
@@ -44,14 +47,14 @@ func (a *Access) NewBinarySensor(id string) (bs *BinarySensor, err error) {
 	return &state, nil
 }
 
-// On turns on a switch
+// On turns on a binary sensor (Currently Unsupported)
 func (bs *BinarySensor) On() (err error) {
-	return bs.access.CallService("switch", "turn_on", bs.id)
+	return fmt.Errorf("Unsupported Action: On %+v\n", bs)
 }
 
-// Off turns off a switch
+// Off turns off a binary sensor (Currently Unsupported)
 func (bs *BinarySensor) Off() (err error) {
-	return bs.access.CallService("switch", "turn_off", bs.id)
+	return fmt.Errorf("Unsupported Action: Off %+v\n", bs)
 }
 
 // Toggle toggles a switch
