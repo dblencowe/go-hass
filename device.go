@@ -24,13 +24,15 @@ func (a *Access) GetDevice(state State) (Device, error) {
 		return a.NewSwitch(state.EntityID), nil
 	case "lock":
 		return a.NewLock(state.EntityID), nil
+	case "binary_sensor":
+		return a.NewBinarySensor(state.EntityID)
 	}
 	return nil, errors.New("Device type not supported yet")
 }
 
 // SupportedDeviceTypes returns a list of supported device types
 func (a *Access) SupportedDeviceTypes() []string {
-	return []string{"light", "switch", "lock"}
+	return []string{"light", "switch", "lock", "binary_sensor"}
 }
 
 // IsSupportedDevice returns true if an entityID is a supported device
